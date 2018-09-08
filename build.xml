@@ -98,7 +98,7 @@
             </exec>  
         </target>    
     	
-        <target name="install" depends="clean, init, wsimport, wsimportlocaldb">
+        <target name="install" depends="clean, init">
             <echo message="Compile target has been called" />
             <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false">
             </javac>
