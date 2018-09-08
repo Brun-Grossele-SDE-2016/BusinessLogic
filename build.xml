@@ -72,31 +72,6 @@
             <echo message="${build.dir} has been deleted" />
         </target>
 	    
-	<target name="wsimport">  
-            <echo message="Generate the stub from wsdl" />
-	    <exec executable="wsimport" >  
-                <arg value="-verbose"/>  
-                <arg value="-keep"/>  
-                <arg value="-d"/>  
-                <arg value="build"/>  
-                <arg value="-s"/>   
-                <arg value="src"/>  
-                <arg value="${wsdl}"/>  
-            </exec>  
-        </target>
-
-        <target name="wsimportlocaldb">  
-            <echo message="Generate the stub from wsdllocaldb" />
-        <exec executable="wsimport" >  
-                <arg value="-verbose"/>  
-                <arg value="-keep"/>  
-                <arg value="-d"/>  
-                <arg value="build"/>  
-                <arg value="-s"/>   
-                <arg value="src"/>  
-                <arg value="${wsdllocaldb}"/>  
-            </exec>  
-        </target>    
     	
         <target name="install" depends="clean, init">
             <echo message="Compile target has been called" />
