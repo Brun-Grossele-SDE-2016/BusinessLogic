@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="evaluation" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="idSuggestion" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="place" type="{http://webservice.localdb.knowyourtown/}place" minOccurs="0"/>
+ *         &lt;element name="location" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlType;
     "description",
     "evaluation",
     "idSuggestion",
-    "place",
+    "location",
     "title"
 })
 public class Suggestion {
@@ -45,7 +45,7 @@ public class Suggestion {
     protected String description;
     protected String evaluation;
     protected int idSuggestion;
-    protected Place place;
+    protected String location;
     protected String title;
 
     /**
@@ -137,27 +137,27 @@ public class Suggestion {
     }
 
     /**
-     * Recupera il valore della proprietà place.
+     * Recupera il valore della proprietà location.
      * 
      * @return
      *     possible object is
-     *     {@link Place }
+     *     {@link String }
      *     
      */
-    public Place getPlace() {
-        return place;
+    public String getLocation() {
+        return location;
     }
 
     /**
-     * Imposta il valore della proprietà place.
+     * Imposta il valore della proprietà location.
      * 
      * @param value
      *     allowed object is
-     *     {@link Place }
+     *     {@link String }
      *     
      */
-    public void setPlace(Place value) {
-        this.place = value;
+    public void setLocation(String value) {
+        this.location = value;
     }
 
     /**

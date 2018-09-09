@@ -57,7 +57,7 @@ public interface Business
     
     @WebMethod(operationName="createSuggestion")
     @WebResult(name="suggestionId") 
-    public int addSuggestion(@WebParam(name="personId") int pId, @WebParam(name="suggestion", targetNamespace="http://webservice.business.knowyourtown/") Suggestion suggestion);
+    public int addSuggestion(@WebParam(name="personId") int pId, @WebParam(name="suggestion", targetNamespace="http://webservice.business.knowyourtown/") String title);
 
     @WebMethod(operationName="updateSuggestion")
     @WebResult(name="suggestionId") 

@@ -10,6 +10,7 @@ import knowyourtown.localdb.webservice.Suggestion;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -119,20 +120,44 @@ public class BusinessImplementation implements Business
     }
     
     @Override
-    public int addSuggestion(int pId, Suggestion suggestion) {
+    public int addSuggestion(int pId, String title) {
     	init();
-    	System.out.println("Save Suggestion with id = " + suggestion.getIdSuggestion());
-        
-    	if(suggestion.getPlace()==null)
-    	{
-    		System.out.println("QUi");
-    	}
-    	else
-    	{
-    		System.out.println("QUa " + suggestion.getPlace().getPlaceType().getType());
-    	}
     	
-    	return storage.createSuggestion(pId, suggestion);
+
+        String motivation = "";
+        if (Math.random() == 0)
+            motivation =  storage.getQuote();
+        else
+            motivation = storage.getQuote2();
+
+        Place lastplace = storage.getLastPlaceByType(pId,"to visit");
+        if(lastplace == null)
+            return 0;
+
+        String weather = storage.getWeatherInformationByCity(lastplace.getLocation());
+        if(weather.equals("Init"))
+        {
+            weather = "No weather available";
+        }
+        else{
+            String [] weatherdata = weather.split("\\|");
+            weather = " Weather for " +lastplace.getLocation() + "\nTemperaure : " + weatherdata[0] + "°\nWind : " + weatherdata[1] + "Km/h\nClouds : " + weatherdata[2] + "%";
+
+        }
+        Suggestion s = new Suggestion();
+        s.setTitle(title);
+        String description = "We suggest you go to " + lastplace.getLocation() + " " + lastplace.getName() + "\n" +
+            weather + "\n" + "Here's some motivation : " + motivation;
+        s.setDescription(description);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        s.setDate(dateFormat.format(date));
+        s.setLocation(lastplace.getLocation()); 
+        s.setEvaluation("0");
+        
+    	
+    	
+    	return storage.createSuggestion(pId, s);
     }
 
     @Override
@@ -142,7 +167,12 @@ public class BusinessImplementation implements Business
 
 		Suggestion g = storage.getSuggestionByTitle(pId, oldSuggestion);
 		if(g == null)
-			return -1;
+			g = new Suggestion();
+        g.setTitle(suggestion.getTitle());
+        g.setDescription(suggestion.getDescription());
+        g.setDate(suggestion.getDate());
+        g.setLocation(suggestion.getLocation()); 
+        g.setEvaluation(suggestion.getEvaluation());  
 
     	return storage.updateSuggestion(pId, g);
     }
