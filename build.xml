@@ -39,7 +39,6 @@
         <property name="webcontent.dir" value="WebContent" />
 		<property name="wsdl" value="http://127.0.1.1:6902/ws/storage?wsdl"/>
         <property name="wsdllocaldb" value="http://127.0.1.1:6903/ws/people?wsdl"/>
-    	<!-- <property name="wsdl" value="https://introsde-lifecoach-storage.herokuapp.com/ws/storage/?wsdl"/> -->
         <!-- ================================= 
 	          target: resolve downloads the dependencies to your lib folder              
 	         ================================= -->
